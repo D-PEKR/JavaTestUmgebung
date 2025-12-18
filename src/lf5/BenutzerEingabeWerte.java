@@ -19,4 +19,5 @@ public class BenutzerEingabeWerte {
         String eingabe = sc.nextLine();
         return eingabe;
     }
+
 }
