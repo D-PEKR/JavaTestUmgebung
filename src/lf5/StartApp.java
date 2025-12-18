@@ -4,7 +4,6 @@ public class StartApp {
     static void main() {
         //Deklarieren der Variablen
         int auswahl = 0;
-        int zahl;
         boolean eingabewert = false;
         boolean exitCode = false;
 
