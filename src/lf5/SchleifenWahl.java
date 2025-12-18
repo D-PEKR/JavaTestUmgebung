@@ -31,6 +31,11 @@ public class SchleifenWahl {
         do {
             System.out.println("I ist: " + i);
             i++;
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         } while (i <= 10);
     }
 
@@ -43,6 +48,11 @@ public class SchleifenWahl {
         int i = 0;
         for (i=0; i < 10; i++) {
             System.out.println("I ist: " + i);
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
