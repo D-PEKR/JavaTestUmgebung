@@ -1,31 +1,56 @@
 package interfaceAnwendung;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class StartApp {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         // Hauptfenster
         JFrame frame = new JFrame("Mein erstes Interface");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 500);
-        frame.setLayout(new FlowLayout());
-        frame.setBackground(Color.pink);
         frame.setLayout(new BorderLayout());
 
-        // Komponenten
+        // -------------------------
+        // 1. Menüleiste oben
+        // -------------------------
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu menuDatei = new JMenu("Datei");
+        JMenuItem itemBeenden = new JMenuItem("Beenden");
+        itemBeenden.addActionListener(e -> System.exit(0));
+        menuDatei.add(itemBeenden);
+
+        JMenu menuHilfe = new JMenu("Hilfe");
+        JMenuItem itemInfo = new JMenuItem("Info");
+        itemInfo.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Dies ist ein Beispiel-Interface."));
+        menuHilfe.add(itemInfo);
+
+        menuBar.add(menuDatei);
+        menuBar.add(menuHilfe);
+
+        frame.setJMenuBar(menuBar);
+
+        // -------------------------
+        // 2. Bild in der Mitte
+        // -------------------------
+        ImageIcon icon = new ImageIcon("bild.png"); // <-- eigenes Bild hier einfügen
+        JLabel bildLabel = new JLabel(icon, SwingConstants.CENTER);
+
+        frame.add(bildLabel, BorderLayout.CENTER);
+
+        // -------------------------
+        // 3. Unten Eingabebereich
+        // -------------------------
+        JPanel untenPanel = new JPanel();
+        untenPanel.setLayout(new FlowLayout());
+
         JLabel label = new JLabel("Gib deinen Namen ein:");
         JTextField textField = new JTextField(15);
         JButton button = new JButton("Klick mich!");
         JLabel output = new JLabel("");
 
-        // Komponente 2
-        JLabel label2 = new JLabel("Gib deinen Namen ein:");
-        JTextField textField2 = new JTextField(15);
-        JButton button2 = new JButton("Klick mich!");
-        JLabel output2 = new JLabel("");
-
-        // Button-Event
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String name = textField.getText();
@@ -33,26 +58,16 @@ public class StartApp {
             }
         });
 
-        // Komponenten ins Fenster
-        frame.add(label);
-        frame.add(label2);
-        frame.add(textField);
-        frame.add(button);
-        frame.add(output);
+        untenPanel.add(label);
+        untenPanel.add(textField);
+        untenPanel.add(button);
+        untenPanel.add(output);
 
-        // Sichtbar machen
+        frame.add(untenPanel, BorderLayout.SOUTH);
+
+        // -------------------------
+        // Fenster sichtbar machen
+        // -------------------------
         frame.setVisible(true);
-
-
-
-
-        JLabel oben = new JLabel("Text oben", SwingConstants.CENTER);
-        JLabel unten = new JLabel("Text unten", SwingConstants.CENTER);
-        JLabel mitte = new JLabel("Text in der Mitte", SwingConstants.CENTER);
-
-        frame.add(oben, BorderLayout.NORTH);
-        frame.add(unten, BorderLayout.SOUTH);
-        frame.add(mitte, BorderLayout.CENTER);
-
     }
 }
